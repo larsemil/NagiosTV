@@ -17,5 +17,6 @@ $g_db_name = 'ndoutils'; // database name
 $g_db_user = 'ndoutils'; // database username
 $g_db_pass = 'cHanGeMe===='; // database password
 $g_timezone = "America/Los_Angeles"; // server timezone - same as config.js
+$g_db_prefix ='nagios_'; // the table prefix
 
 ?>

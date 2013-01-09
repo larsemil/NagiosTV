@@ -83,7 +83,7 @@
 	
         case "current":
         
-            $sql = "SELECT * FROM nagios_servicestatus s INNER JOIN nagios_objects o ON s.service_object_id=o.object_id ";
+            $sql = "SELECT * FROM ".$g_db_prefix."servicestatus s INNER JOIN ".$g_db_prefix."objects o ON s.service_object_id=o.object_id ";
             $sql .= "WHERE current_state <> 0 AND ";
                 $sql .= "(problem_has_been_acknowledged = 0 AND notifications_enabled = 1) ";
                 //if (is_numeric($lastid)) $sql .= "AND (servicestatus_id > ".$lastid.") ";
@@ -93,8 +93,8 @@
             
         case "acked":
             
-            $sql = "SELECT * FROM nagios_servicestatus s  ";
-            $sql .= "INNER JOIN nagios_objects o ON s.service_object_id=o.object_id ";
+            $sql = "SELECT * FROM ".$g_db_prefix."servicestatus s  ";
+            $sql .= "INNER JOIN ".$g_db_prefix."objects o ON s.service_object_id=o.object_id ";
             $sql .= "WHERE current_state <> 0 AND ";
                 $sql .= "(problem_has_been_acknowledged = 1 OR notifications_enabled = 0) ";
                 //if (is_numeric($lastid)) $sql .= "AND (servicestatus_id > ".$lastid.") ";
@@ -104,8 +104,8 @@
 	       
 	   case "history":
 	   
-	       $sql = "SELECT n.*, o.name1, o.name2 FROM nagios_notifications n ";
-	       $sql .= "INNER JOIN nagios_objects o ON n.object_id=o.object_id ";
+	       $sql = "SELECT n.*, o.name1, o.name2 FROM ".$g_db_prefix."notifications n ";
+	       $sql .= "INNER JOIN ".$g_db_prefix."objects o ON n.object_id=o.object_id ";
 	       if (is_numeric($lastid)) $sql .= "WHERE (notification_id > ".$lastid.") ";
 	       $sql .= "ORDER BY start_time DESC LIMIT ".$maxcount.";";
 	       break;
